@@ -8,16 +8,20 @@ namespace Client
     {
         private readonly IMqttClient _mqttClient;
 
-        public MqttClient()
+        public MqttClient(IConfiguration configuration)
         {
             _mqttClient = new MqttFactory().CreateMqttClient();
+            Configuration = configuration;
         }
-
+        public IConfiguration Configuration { get; }
         public async Task ConnectAsync()
         {
+            string hostIp = Configuration["MqttOption:HostIp"];
+            int hostPort = int.Parse(Configuration["MqttOption:HostPort"]);
+           
             var options = new MqttClientOptionsBuilder()
                 .WithClientId(Guid.NewGuid().ToString())
-                .WithTcpServer("127.0.0.1", 1883) // Адрес и порт MQTT-брокера
+                .WithTcpServer(hostIp, hostPort) // Адрес и порт MQTT-брокера
                 .WithCleanSession()
                 .Build();
 

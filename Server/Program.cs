@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<MqttClient>();
 var app = builder.Build();
-
+//app.UseWelcomePage();
 
 
 
@@ -24,7 +24,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapRazorPages();
 
