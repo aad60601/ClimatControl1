@@ -1,14 +1,15 @@
 using MQTTnet;
 using Client;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddSingleton<MqttClient>();
+// Add services to the container.builder.Services.AddRazorPages();
+//builder.Services.AddSingleton<MqttClient>();
 var app = builder.Build();
-//app.UseWelcomePage();
-
+//app.UseWelcomePage();app.UseStartUp<Startup>();
 
 
 // Configure the HTTP request pipeline.
@@ -26,6 +27,5 @@ app.UseRouting();
 
 //app.UseAuthorization();
 
-app.MapRazorPages();
 
 app.Run();
